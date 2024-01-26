@@ -9,22 +9,49 @@ namespace API_DbTest.Controllers
     [ApiController]
     public class HttpController : ControllerBase
     {
-        // localhost:44325/api/Student
-
+        // Link for Postman: https://localhost:7002/api/Http
+        public Student student = new Student();
         private readonly StudentDB _context;
+       
+        
+        
+
 
         public HttpController(StudentDB context)
         {
             _context = context;
+            
         }
 
 
-        [HttpPost]
-        public IActionResult PostStudentNormal(Student student)
+        [HttpPost("register")]
+        public ActionResult<Student> RegisterStudent(StudentDTO request)
         {
+            
+            student.FirstName = request.FirstName;
+            student.SecondName = request.SecondName;
+            student.EMail = request.EMail;
+            student.Age = request.Age;
+            student.UserName = request.UserName;
+            student.PasswordHash = request.Password;
             _context.Students.Add(student);
             _context.SaveChangesAsync();
 
+            return Ok(student);
+        }
+        [HttpPost("login")]
+        public ActionResult<Student> LoginStudent( StudentDTO request)
+        {
+            if (student.UserName != request.UserName)
+            {
+                return BadRequest("User not found");
+            }
+            if (student.PasswordHash != request.Password)
+            {
+                return BadRequest("User not found");
+            }
+            _context.Students.Add(student);
+            _context.SaveChangesAsync();
             return Ok(student);
         }
 

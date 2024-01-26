@@ -12,6 +12,8 @@ namespace API_DbTest
 
             // Add services to the container.
 
+            // To run the migrations put this in Packet-manager-console: Update-Database -Project API-Lernatelier-1303 -StartupProject API-Lernatelier-1303
+
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
