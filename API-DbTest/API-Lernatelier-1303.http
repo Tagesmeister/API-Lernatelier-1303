@@ -1,0 +1,6 @@
+@API_Lernatelier_1303_HostAddress = http://localhost:5003
+
+GET {{API_Lernatelier_1303_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
