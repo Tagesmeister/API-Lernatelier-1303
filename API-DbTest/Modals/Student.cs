@@ -2,7 +2,6 @@
 {
     public class Student
     {
-        //public bool IsLoggedIn { get; set; } = false;
         public int ID { get; set; }
         public string FirstName { get; set; } = string.Empty;
         public string SecondName { get; set; } = string.Empty;
@@ -15,9 +14,13 @@
     }
     public class StudentDTO
     {
+        public int ID { get; set; }
+        public required string FirstName { get; set; }
+        public required string SecondName { get; set;}
+        public string EMail { get; set; }
+        public required int Age { get; set; }
         public required string UserName { get; set; }
 
         public required string Password { get; set; }
     }
-    
 }
