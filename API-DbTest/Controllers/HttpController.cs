@@ -14,12 +14,7 @@ namespace API_DbTest.Controllers
         
         private readonly StudentDB _context;
 
-        private bool _isLoggedIn
-        {
-            set { student.IsLoggedIn = value; }
-            get { return _isLoggedIn; }
-        }
-
+       
 
 
 
@@ -55,17 +50,17 @@ namespace API_DbTest.Controllers
             var student = await _context.Students
                                         .FirstOrDefaultAsync(s => s.UserName == request.UserName);
 
-            _isLoggedIn = true;
+            //_isLoggedIn = true;
             if (student.UserName == null)
             {
-                _isLoggedIn = false;
+                //_isLoggedIn = false;
                 return BadRequest("User not found");
                 
             }
            
             else if (student.Password != request.Password)
             {
-                _isLoggedIn = false;
+                //_isLoggedIn = false;
                 return BadRequest("User not found");
             }
 
@@ -77,10 +72,12 @@ namespace API_DbTest.Controllers
         [HttpGet]
         public IActionResult GetAllStudentsNormal()
         {
-            if (_isLoggedIn == false)
+            /*if (_isLoggedIn == false)
             {
                 return BadRequest("Not logged in");
+            
             }
+            */
             var allStudents = _context.Students.ToList();
 
             if(allStudents.Count == 0)

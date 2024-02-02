@@ -2,7 +2,7 @@
 {
     public class Student
     {
-        public bool IsLoggedIn { get; set; } = false;
+        //public bool IsLoggedIn { get; set; } = false;
         public int ID { get; set; }
         public string FirstName { get; set; } = string.Empty;
         public string SecondName { get; set; } = string.Empty;
