@@ -19,7 +19,9 @@ namespace API_DbTest.Migrations
                     FirstName = table.Column<string>(type: "TEXT", nullable: false),
                     SecondName = table.Column<string>(type: "TEXT", nullable: false),
                     EMail = table.Column<string>(type: "TEXT", nullable: false),
-                    Age = table.Column<int>(type: "INTEGER", nullable: false)
+                    Age = table.Column<int>(type: "INTEGER", nullable: false),
+                    Password = table.Column<string>(type: "TEXT", nullable: false),
+                    UserName = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {

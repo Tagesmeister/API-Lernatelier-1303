@@ -33,7 +33,7 @@ namespace API_DbTest.Controllers
             student.EMail = request.EMail;
             student.Age = request.Age;
             student.UserName = request.UserName;
-            student.PasswordHash = request.Password;
+            student.Password = request.Password;
             _context.Students.Add(student);
             _context.SaveChangesAsync();
 
@@ -46,9 +46,9 @@ namespace API_DbTest.Controllers
             {
                 return BadRequest("User not found");
             }
-            if (student.PasswordHash != request.Password)
+            else if (student.Password != request.Password)
             {
-                return BadRequest("User not found");
+                return BadRequest("Password kaputt");
             }
             _context.Students.Add(student);
             _context.SaveChangesAsync();
