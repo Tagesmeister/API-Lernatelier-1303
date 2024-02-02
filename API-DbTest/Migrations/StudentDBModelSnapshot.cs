@@ -36,6 +36,14 @@ namespace API_DbTest.Migrations
                     b.Property<string>("SecondName")
                         .IsRequired()
                         .HasColumnType("TEXT");
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
 
                     b.HasKey("ID");
 

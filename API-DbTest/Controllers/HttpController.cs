@@ -11,10 +11,17 @@ namespace API_DbTest.Controllers
     {
         // Link for Postman: https://localhost:7002/api/Http
         public Student student = new Student();
+        
         private readonly StudentDB _context;
-       
-        
-        
+
+        private bool _isLoggedIn
+        {
+            set { student.IsLoggedIn = value; }
+            get { return _isLoggedIn; }
+        }
+
+
+
 
 
         public HttpController(StudentDB context)
@@ -25,7 +32,7 @@ namespace API_DbTest.Controllers
 
 
         [HttpPost("register")]
-        public ActionResult<Student> RegisterStudent(StudentDTO request)
+        public ActionResult<Student> RegisterStudent(Student request)
         {
             
             student.FirstName = request.FirstName;
@@ -34,30 +41,46 @@ namespace API_DbTest.Controllers
             student.Age = request.Age;
             student.UserName = request.UserName;
             student.Password = request.Password;
+            student.UserName = request.UserName;
+            student.Password = request.Password;
             _context.Students.Add(student);
             _context.SaveChangesAsync();
 
             return Ok(student);
         }
         [HttpPost("login")]
-        public ActionResult<Student> LoginStudent( StudentDTO request)
+        public async Task<ActionResult<Student>> LoginStudent(StudentDTO request)
         {
-            if (student.UserName != request.UserName)
+            
+            var student = await _context.Students
+                                        .FirstOrDefaultAsync(s => s.UserName == request.UserName);
+
+            _isLoggedIn = true;
+            if (student.UserName == null)
             {
+                _isLoggedIn = false;
                 return BadRequest("User not found");
+                
             }
+           
             else if (student.Password != request.Password)
             {
-                return BadRequest("Password kaputt");
+                _isLoggedIn = false;
+                return BadRequest("User not found");
             }
-            _context.Students.Add(student);
-            _context.SaveChangesAsync();
+
+            
             return Ok(student);
         }
+
 
         [HttpGet]
         public IActionResult GetAllStudentsNormal()
         {
+            if (_isLoggedIn == false)
+            {
+                return BadRequest("Not logged in");
+            }
             var allStudents = _context.Students.ToList();
 
             if(allStudents.Count == 0)
