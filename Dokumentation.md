@@ -25,16 +25,22 @@ Man kann sich mit der Email und dem Passwort anmelden um die anderen Daten zu er
 | US-№ | Verbindlichkeit | Typ  | Beschreibung                       |
 | ---- | --------------- | ---- | ---------------------------------- |
 | 1    |Muss|Funktional|Als User möchte ich einen neue Person hinzufügen können, damit ich die API verwenden kann um meine Personen liste zu kreieren.|
-| 2    |Muss|Funktional|Als User möchte ich einen User Updaten können.|
+| 2    |Muss|Funktional|Als User möchte ich einen User Updaten können, damit die Daten akutell bleiben.|
+| 3    |Muss|Funktional|Als User möchte ich einen User Löschen können, damit ich User die es nicht mehr braucht entfernen kann.|
+| 4    |Muss|Funktional|Als User möchte ich das Daten aus der Datenbank ausgegeben werden, damit ich sehen kann welche User in meiner Datenbank sind.|
+| 5    |Muss|Funktional|Als User möchte ich, dass man sich einloggen muss um Daten auszugeben, damit nicht jeder einfach die privaten Daten einsehen kann.|
+| 6    |Muss|Funktional|Als User möchte ich, dass man sich einloggen muss um Daten zu bearbeiten, damit keiner Daten manipulieren kann der nicht die berechtigung dafür hat.|
+| 7    |Muss|Funktional|Als User möchte ich, dass man sich einloggen muss ujm Daten zu Löschen, damit keiner Daten manipulieren kann der nicht die berechtigung dafür hat.|
 
-✍️ Jede User Story hat eine ganzzahlige Nummer (1, 2, 3 etc.), eine Verbindlichkeit (Muss oder Kann?), und einen Typ (Funktional, Qualität, Rand). Die User Story selber hat folgende Form: *Als ein 🤷‍♂️ möchte ich 🤷‍♂️, damit 🤷‍♂️*.
+
 
 ### 1.3 Testfälle
 
 | TC-№ | Ausgangslage | Eingabe | Erwartete Ausgabe |
 | ---- | ------------ | ------- | ----------------- |
-| 1.1  |              |         |                   |
-| ...  |              |         |                   |
+| 1.1  |API wurde gestartet|register Request({"FirstName": "Hans","SecondName": "Peter","EMail": "Hans.Peter@gmail.com","Age": 45,"Password": "123","UserName": "SuperHans"}|200 OK({"id":0,"firstName":"Hans","secondName":"Peter","eMail":"Hans.Peter@gmail.com","age":45,"password":"123","userName":"SuperHans"}))|
+| 2.1  |User wurde der API hinzugefügt|{"FirstName": "Hans","SecondName": "Müller","EMail": "Hans.Müller@gmail.com","Age": 45,"Password": "123","UserName": "SuperHans"}|200 OK({"id":0,"firstName":"Hans","secondName":"Müller","eMail":"Hans.Müller@gmail.com","age":45,"password":"123","userName":"SuperHans"})|
+| 3.1  |User wurde der API hinzugefügt
 
 ✍️ Die Nummer hat das Format `N.m`, wobei `N` die Nummer der User Story ist, die der Testfall abdeckt, und `m` von `1` an nach oben gezählt. Beispiel: Der dritte Testfall, der die zweite User Story abdeckt, hat also die Nummer `2.3`.
 
