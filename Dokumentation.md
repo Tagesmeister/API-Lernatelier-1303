@@ -62,7 +62,7 @@ Man kann sich mit der Email und dem Passwort anmelden um die anderen Daten zu er
 | AP-№ | Frist | Zuständig | Beschreibung | geplante Zeit |
 | ---- | ----- | --------- | ------------ | ------------- |
 | 1.A  |  19.01.2024     |     Oestrich      |     Registrieren realisieren         |      2         |
-| 2.A  |   19.01.2024    |    Jesenko       |     SQLLightdatenbank aufsetzten         |        1.5       |
+| 2.A  |   19.01.2024    |    Jesenko & Oestrich      |     SQLLightdatenbank aufsetzten         |        1.5       |
 | 3.A  |  02.02.2024   |  Oestrich   |     Login        |      2        |
 | 4.A  |   02.02.2024  |  Jesenko   |       CRUD-Manipulationen      |     1.5        |
 | 5.A  |  26.02.2024   |   Oestrich  |       Datenbank in C# im Programm implementieren      |       3       |
@@ -81,7 +81,7 @@ Wir werden nach Planung vorgehen, je nach Know-how wird es von der Planung abwei
 | AP-№ | Datum | Zuständig | geplante Zeit | tatsächliche Zeit |
 | ---- | ----- | --------- | ------------- | ----------------- |
 | 1.A  |   19.01.2024   |      Oestrich     |       2 |  2   |
-| 2.A  |   19.01.2024    |    Jesenko       |     1.5 |  1.8   |
+| 2.A  |   19.01.2024    |    Jesenko & Oestrich      |     1.5 |  1.8   |
 | 3.A  |   02.02.2024    |     Oestrich      |      2 |  2   |
 | 4.A  |   02.02.2024    |      Jesenko     |     1.5 |   1.75  |
 | 5.A  |   26.02.2024    |      Oestrich     |      3 |   4  |
