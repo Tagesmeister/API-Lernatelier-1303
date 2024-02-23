@@ -6,9 +6,11 @@ Pascal Oestrich, Stefan Jesenko
 
 | Datum | Version | Zusammenfassung                                              |
 | ----- | ------- | ------------------------------------------------------------ |
-|       | 0.0.1   ||
-|       | ...     |                                                              |
-|       | 1.0.0   |                                                              |
+|    19.01.2024   | 0.0.1   |               |
+|    02.02.2024   | 0.0.2   |               |
+|    26.01.2024   | 0.0.3   |              |
+|    23.02.2024   | 0.0.4   |              |
+
 
 ## 1 Informieren
 
@@ -30,7 +32,7 @@ Man kann sich mit der Email und dem Passwort anmelden um die anderen Daten zu er
 | 4    |Muss|Funktional|Als User möchte ich das Daten aus der Datenbank ausgegeben werden, damit ich sehen kann welche User in meiner Datenbank sind.|
 | 5    |Muss|Funktional|Als User möchte ich, dass man sich einloggen muss um Daten auszugeben, damit nicht jeder einfach die privaten Daten einsehen kann.|
 | 6    |Muss|Funktional|Als User möchte ich, dass man sich einloggen muss um Daten zu bearbeiten, damit keiner Daten manipulieren kann der nicht die berechtigung dafür hat.|
-| 7    |Muss|Funktional|Als User möchte ich, dass man sich einloggen muss ujm Daten zu Löschen, damit keiner Daten manipulieren kann der nicht die berechtigung dafür hat.|
+| 7    |Muss|Funktional|Als User möchte ich, dass man sich einloggen muss um Daten zu Löschen, damit keiner Daten manipulieren kann der nicht die berechtigung dafür hat.|
 
 
 
@@ -40,9 +42,15 @@ Man kann sich mit der Email und dem Passwort anmelden um die anderen Daten zu er
 | ---- | ------------ | ------- | ----------------- |
 | 1.1  |API wurde gestartet|register Request({"FirstName": "Hans","SecondName": "Peter","EMail": "Hans.Peter@gmail.com","Age": 45,"Password": "123","UserName": "SuperHans"}|200 OK({"id":0,"firstName":"Hans","secondName":"Peter","eMail":"Hans.Peter@gmail.com","age":45,"password":"123","userName":"SuperHans"}))|
 | 2.1  |User wurde der API hinzugefügt|{"FirstName": "Hans","SecondName": "Müller","EMail": "Hans.Müller@gmail.com","Age": 45,"Password": "123","UserName": "SuperHans"}|200 OK({"id":0,"firstName":"Hans","secondName":"Müller","eMail":"Hans.Müller@gmail.com","age":45,"password":"123","userName":"SuperHans"})|
-| 3.1  |User wurde der API hinzugefügt
+| 3.1  |User wurde der API hinzugefügt|{"id":1}| 201 OK ({"id":1,"firstName":"Hans","secondName":"Peter","eMail":"Hans.Peter@gmail.com","age":45, "password":"123","userName":"SuperHans"}))|
+| 4.1 | API wurde gestartet, User ist angemeldet | GETall-Request | 200 OK ({"id":1,"firstName":"Olaf","secondName":"Scholz","eMail":"Olaf.Scholz@gmail.com","age":26,"password":"Olfaf","userName":"Bundeskanzler"}({"id":2,"firstName":"Hans","secondName":"Peter","eMail":"Hans.Peter@gmail.com","age":45,"password":"123","userName":"SuperHans"})) |
+| 5.1 | API gestartet ohne anmeldung | GETall-Request | 401 Badrequest |
+| 5.2 | API gestartet angemeldet | GETall-Request | 200 OK ({"id":1,"firstName":"Olaf","secondName":"Scholz","eMail":"Olaf.Scholz@gmail.com","age":26,"password":"Olfaf","userName":"Bundeskanzler"}({"id":2,"firstName":"Hans","secondName":"Peter","eMail":"Hans.Peter@gmail.com","age":45,"password":"123","userName":"SuperHans"}))|
+| 6.1 | API gestartet ohne anmeldung | PUT-Request ({"id":1,"firstName":"Olaf","secondName":"Brieder","eMail":"Olaf.Brieder@gmail.com","age":30,"password":"Olfaf","userName":"Bundeskanzler"}) | 401 Badrequest |
+| 6.2 | API gestartet angemeldet | PUT-Request ({"id":1,"firstName":"Olaf","secondName":"Brieder","eMail":"Olaf.Brieder@gmail.com","age":30,"password":"Olfaf","userName":"Bundeskanzler"}) | 200 OK |
+| 7.1 |API gestartet ohne anmledung |Delete-Request {"id":1} | 401 Badrequest |
+| 7.2 |API gestartet angemeldet |Delete-Request {"id":1} | 200 OK |
 
-✍️ Die Nummer hat das Format `N.m`, wobei `N` die Nummer der User Story ist, die der Testfall abdeckt, und `m` von `1` an nach oben gezählt. Beispiel: Der dritte Testfall, der die zweite User Story abdeckt, hat also die Nummer `2.3`.
 
 ### 1.4 Diagramme
 
