@@ -1,10 +1,13 @@
 ﻿using API_DbTest.Modals;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace API_DbTest.Controllers
 {
+
+    [Authorize] 
     [Route("api/[controller]")]
     [ApiController]
     public class HttpController : ControllerBase
@@ -14,57 +17,24 @@ namespace API_DbTest.Controllers
         
         private readonly StudentDB _context;
 
-       
-
-
-
 
         public HttpController(StudentDB context)
         {
             _context = context;
-            
+
         }
 
-
-        [HttpPost("register")]
-        public ActionResult<Student> RegisterStudent(Student request)
+        [HttpPost]
+        public IActionResult CreateStudent([FromBody] Student student)
         {
-            
-            student.FirstName = request.FirstName;
-            student.SecondName = request.SecondName;
-            student.EMail = request.EMail;
-            student.Age = request.Age;
-            student.UserName = request.UserName;
-            student.Password = request.Password;
-            student.UserName = request.UserName;
-            student.Password = request.Password;
+            if (student == null)
+            {
+                return BadRequest("Student data is null.");
+            }
+
             _context.Students.Add(student);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
 
-            return Ok(student);
-        }
-        [HttpPost("login")]
-        public async Task<ActionResult<Student>> LoginStudent(StudentDTO request)
-        {
-            
-            var student = await _context.Students
-                                        .FirstOrDefaultAsync(s => s.UserName == request.UserName);
-
-            //_isLoggedIn = true;
-            if (student.UserName == null)
-            {
-                //_isLoggedIn = false;
-                return BadRequest("User not found");
-                
-            }
-           
-            else if (student.Password != request.Password)
-            {
-                //_isLoggedIn = false;
-                return BadRequest("User not found");
-            }
-
-            
             return Ok(student);
         }
 
@@ -72,12 +42,7 @@ namespace API_DbTest.Controllers
         [HttpGet]
         public IActionResult GetAllStudentsNormal()
         {
-            /*if (_isLoggedIn == false)
-            {
-                return BadRequest("Not logged in");
-            
-            }
-            */
+          
             var allStudents = _context.Students.ToList();
 
             if(allStudents.Count == 0)
@@ -86,6 +51,61 @@ namespace API_DbTest.Controllers
             }
             return Ok(allStudents);
         }
+        [HttpPut("{id}")]
+        public IActionResult UpdateStudent(int id, [FromBody] Student studentUpdate)
+        {
+            if (studentUpdate == null || id != studentUpdate.ID)
+            {
+                return BadRequest("Student data is invalid.");
+            }
+
+            var existingStudent = _context.Students.FirstOrDefault(x => x.ID == id);
+            if (existingStudent == null)
+            {
+                return NotFound($"Student with ID {id} not found.");
+            }
+
+            
+            existingStudent.FirstName = studentUpdate.FirstName;
+            existingStudent.SecondName = studentUpdate.SecondName;
+            existingStudent.Age = studentUpdate.Age;
+            existingStudent.EMail = studentUpdate.EMail;
+          
+
+            _context.Students.Update(existingStudent);
+            _context.SaveChanges();
+
+            return NoContent(); 
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteStudent(int id)
+        {
+            var studentToDelete = _context.Students.FirstOrDefault(x => x.ID == id);
+            if (studentToDelete == null)
+            {
+                return NotFound("Student not found.");
+            }
+
+            _context.Students.Remove(studentToDelete);
+            _context.SaveChanges();
+
+            return Ok($"Student with ID {id} deleted.");
+        }
+        [HttpGet("{id}")]
+        public IActionResult GetStudentById(int id)
+        {
+            var student = _context.Students.FirstOrDefault(s => s.ID == id);
+
+            if (student == null)
+            {
+                return NotFound($"Student with ID {id} not found.");
+            }
+
+            return Ok(student);
+        }
+
+
 
     }
 }

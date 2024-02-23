@@ -10,14 +10,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API_DbTest.Migrations
 {
     [DbContext(typeof(StudentDB))]
-    [Migration("20240126072228_Initial")]
-    partial class Initial
+    [Migration("20240223073202_1.0.0")]
+    partial class _100
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "8.0.1");
+            modelBuilder.HasAnnotation("ProductVersion", "8.0.2");
 
             modelBuilder.Entity("API_DbTest.Modals.Student", b =>
                 {

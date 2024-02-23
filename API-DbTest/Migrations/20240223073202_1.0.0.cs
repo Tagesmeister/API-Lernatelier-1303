@@ -5,7 +5,7 @@
 namespace API_DbTest.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class _100 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,9 +19,7 @@ namespace API_DbTest.Migrations
                     FirstName = table.Column<string>(type: "TEXT", nullable: false),
                     SecondName = table.Column<string>(type: "TEXT", nullable: false),
                     EMail = table.Column<string>(type: "TEXT", nullable: false),
-                    Age = table.Column<int>(type: "INTEGER", nullable: false),
-                    Password = table.Column<string>(type: "TEXT", nullable: false),
-                    UserName = table.Column<string>(type: "TEXT", nullable: false)
+                    Age = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
